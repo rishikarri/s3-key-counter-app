@@ -1,4 +1,4 @@
-"use client"; // This is a client component 👈🏽
+"use client"; // This is a client component 
 
 
 import axios from 'axios'; // Import axios for making HTTP requests
@@ -8,7 +8,7 @@ const get = require('lodash.get');
 
 
 export default function S3KeyCount() {
-  const [s3KeysCount, setS3KeysCount] = useState(0);
+  const [s3KeysCount, setS3KeysCount] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,11 +29,10 @@ export default function S3KeyCount() {
   }, []); 
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div >
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         Number of S3 Keys in file: {s3KeysCount}
       </main>
-      
     </div>
   );
 }
