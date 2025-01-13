@@ -29,10 +29,8 @@ export default function S3KeyCount() {
   }, []); 
 
   return (
-    <div >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="p-4 bg-gray-100 rounded-lg shadow-md">
         Number of S3 Keys in file: {s3KeysCount}
-      </main>
     </div>
   );
 }
