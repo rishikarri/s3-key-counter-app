@@ -11,9 +11,15 @@ const DataPoster: React.FC = () => {
 	const [inputs, setInputs] = useState<KeyValue[]>([]); // Array to store key-value pairs
 	const [response, setResponse] = useState<string | null>(null);
 
-	const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleKeyInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
 		const newInputs = [...inputs];
-		newInputs[index] = { ...newInputs[index], value: event.target.value };
+		newInputs[index].key = event.target.value;
+		setInputs(newInputs);
+	};
+
+	const handleValueInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+		const newInputs = [...inputs];
+		newInputs[index].value = event.target.value;
 		setInputs(newInputs);
 	};
 
@@ -36,8 +42,9 @@ const DataPoster: React.FC = () => {
 		}, {} as Record<string, string>); // Initialize accumulator as empty object
 
 		try {
-			const response = await axios.post("YOUR_API_ENDPOINT_HERE", finalData);
-			setResponse(JSON.stringify(response.data));
+            console.log('finalData', finalData)
+			const response = await axios.post("https://b7xj1i3tki.execute-api.us-east-1.amazonaws.com/update-s3", { payload: finalData});
+			setResponse('Data has been successfully uploaded to S3');
 		} catch (error) {
 			console.error("Error posting data:", error);
 			setResponse("Error posting data");
@@ -46,7 +53,6 @@ const DataPoster: React.FC = () => {
 
 	return (
 		<div className="p-4 bg-gray-100 rounded-lg shadow-md">
-			{" "}
 			{/* Container styles */}
 			<h2 className="text-xl font-bold mb-4">Post Data</h2>
 			<form onSubmit={handleSubmit}>
@@ -59,7 +65,7 @@ const DataPoster: React.FC = () => {
 							type="text"
 							id={`key-${index}`}
 							value={input.key}
-							onChange={(e) => handleInputChange(index, e)}
+							onChange={(e) => handleKeyInputChange(index, e)}
 							className="flex-grow px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
 						/>
 						<label htmlFor={`value-${index}`} className="ml-4 block text-sm font-medium text-gray-700">
@@ -69,7 +75,7 @@ const DataPoster: React.FC = () => {
 							type="text"
 							id={`value-${index}`}
 							value={input.value}
-							onChange={(e) => handleInputChange(index, e)}
+							onChange={(e) => handleValueInputChange(index, e)}
 							className="flex-grow px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
 						/>
 						{index > 0 && (
