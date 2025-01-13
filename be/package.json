@@ -1,0 +1,26 @@
+{
+  "name": "aws_sandbox2",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishikarri/aws_sandbox2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rishikarri/aws_sandbox2/issues"
+  },
+  "homepage": "https://github.com/rishikarri/aws_sandbox2#readme",
+  "dependencies": {
+    "@aws-sdk/client-iam": "^3.726.1",
+    "@aws-sdk/client-lambda": "^3.726.1",
+    "adm-zip": "^0.5.16",
+    "aws-sdk": "^2.1692.0",
+    "jszip": "^3.10.1"
+  }
+}
